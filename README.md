@@ -1,4 +1,26 @@
 # DictionariesReadoutBenchmarks
+
+We use a simple class to compare reference type (Cat) vs struct type (int)
+```C#
+    class Cat
+    {
+        public int TailLength { get; set; }
+    }
+```
+
+```C#   
+    var dictStrInt = new Dictionary<string, int> { { "One", 1}, {"Two", 2}, {"Three",3}};
+            var dictLongStrInt = new Dictionary<string, int> { { "TheLongLongSameStringOne", 1 }, { "TheLongLongSameStringTwo", 2 }, { "TheLongLongSameStringThree", 3 } };
+            var dictStrCat = new Dictionary<string, Cat> { { "One", new Cat {TailLength = 1} }, { "Two", new Cat { TailLength = 2 } }, { "Three", new Cat { TailLength = 3 } } };
+            var dictIntInt = new Dictionary<int, int> { { 0, 1 }, { 1, 2 }, { 2, 3 } };
+            var dictIntCat = new Dictionary<int, Cat> { { 0, new Cat { TailLength = 1 } }, { 1, new Cat { TailLength = 2 } }, { 2, new Cat { TailLength = 3 } } };
+            var listInt = new List<int> {1, 2, 3};
+            var listCat = new List<Cat> { new Cat { TailLength = 1 } , new Cat { TailLength = 2 }, new Cat { TailLength = 3 } };
+```
+
+
+Run 1000000 times of random pick
+
 A small and simple benchmark to compare readout time for .NET standard dictionaries
 
     Name      | Average time [ms] | Min time [ms] | Max time [ms]
